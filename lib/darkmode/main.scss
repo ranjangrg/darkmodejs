@@ -1,0 +1,95 @@
+@use "./button.scss" as button; 
+@use "./colors.scss" as colors;
+
+/* MIXINS */
+@mixin light-mode-mixin($component) {
+	background-color: colors.getlightcolor($component + "-bg");
+	color: colors.getlightcolor($component + "-fg");
+}
+@mixin dark-mode-mixin($component) {
+	background-color: colors.getdarkcolor($component + "-bg");
+	color: colors.getdarkcolor($component + "-fg");
+}
+@mixin transition-mixin() {
+	transition-timing-function: ease-in-out;
+	transition-duration: 1s;
+}
+
+.light-mode, .dark-mode {
+	@include transition-mixin();
+}
+
+/* BODY */
+body.light-mode {
+	@include light-mode-mixin("body");
+}
+body.dark-mode {
+	@include dark-mode-mixin("body");
+}
+
+#mode-toggler {
+	display: flex;
+	position: fixed;
+	top: 0.5rem; right: 0.5rem;
+	width: button.getbuttonwidth();
+	justify-content: flex-end;
+	z-index: 5;
+}
+
+/* .navbar */
+.navbar.light-mode {
+	@include light-mode-mixin("navbar");
+	ul li:hover {
+		border-bottom: 4px solid lighten(colors.getlightcolor("navbar-bg"), 5%);
+	}
+}
+.navbar.dark-mode {
+	@include dark-mode-mixin("navbar");
+	ul li:hover {
+		border-bottom: 4px solid lighten(colors.getdarkcolor("navbar-bg"), 5%);
+	}
+}
+
+/* .content */
+.content.light-mode {
+	@include light-mode-mixin("content");
+}
+.content.dark-mode {
+	@include dark-mode-mixin("content");
+}
+
+/* TABLE */
+table.light-mode {
+	@include light-mode-mixin("table");
+	td, th {
+		border: 1px solid rgba(colors.getlightcolor("content-bg"), 0.2);
+	}
+	tr:nth-child(even) {
+		@include light-mode-mixin("table-even");
+	}
+}
+table.dark-mode {
+	@include dark-mode-mixin("table");
+	td, th {
+		border: 1px solid rgba(colors.getdarkcolor("content-bg"), 0.2);
+	}
+	tr:nth-child(even) {
+		@include dark-mode-mixin("table-even");
+	}
+}
+
+/* CODE */
+code.dark-mode {
+	color: #FF5964;
+}
+code.light-mode {
+	color: #35A7FF;
+}
+
+/* FOOTER */
+footer.light-mode {
+	@include light-mode-mixin("footer");
+}
+footer.dark-mode {
+	@include dark-mode-mixin("footer");
+}

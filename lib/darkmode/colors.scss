@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "sass:color";
+
+// color declarations
+$light-colors: (
+	"body-bg": #DEE2E6,
+	"body-fg": #212529,
+	"content-bg": #DEE2E6,
+	"content-fg": #212529,
+	"navbar-bg": #A31621,
+	"navbar-fg": #F8F9FA,
+	"table-bg": #DEE2E6,
+	"table-fg": #212529,
+	"table-even-bg":darken(#DEE2E6, 10%),
+	"table-even-fg": #212529,
+	"footer-bg": #08415C,
+	"footer-fg": #F8F9FA,
+);
+$dark-colors: (
+	"body-bg": #1B1F22,
+	"body-fg": #DEE2E6,
+	"content-bg": #212529,
+	"content-fg": #DEE2E6,
+	"navbar-bg": #1B1F22,
+	"navbar-fg": #DEE2E6,
+	"table-bg": darken(#212529, 10%),
+	"table-fg": #DEE2E6,
+	"table-even-bg":#1B1F22,
+	"table-even-fg": #DEE2E6,
+	"footer-bg": #1B1F22,
+	"footer-fg": #DEE2E6,
+);
+
+@function getdarkcolor($type) {
+	@return map.get($dark-colors, $type);
+}
+@function getlightcolor($type) {
+	@return map.get($light-colors, $type);
+}
+
+@function getcolor($type) {
+	@return map.get($light-colors, $type);
+}
